@@ -7,13 +7,15 @@ import * as SplashScreen from 'expo-splash-screen';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
+// break your screens out to separate pages for readability
 import Home from './app/home';
 import API from './app/api';
 
-// this last section always needs to be in your App.js file
+// this always needs to be in your App.js file for react navigation
 const Stack = createStackNavigator();
 
 export default class App extends Component {
+
   state = {
     appIsReady: false,
   }
@@ -28,9 +30,7 @@ export default class App extends Component {
     this.prepareResources();
   }
 
-  /**
-   * Method that serves to load resources and make API calls
-   */
+  // method to load resources and make API calls for splashscreen
   prepareResources = async () => {
     try {
       await performAPICalls();
@@ -46,7 +46,7 @@ export default class App extends Component {
 
 	render(){
 		if (!this.state.appIsReady) {
-      return <View><Text>splash</Text></View>
+      return null
     }
 
   	return (
@@ -61,6 +61,7 @@ export default class App extends Component {
 }
 
 	// Put any code you need to prepare your app in these functions
+	// for splashscreen
 	async function performAPICalls() {}
 	async function downloadAssets() {}
 
