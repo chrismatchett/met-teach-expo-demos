@@ -1,4 +1,5 @@
-# Improvements
+# Night Class Demos
 
-- Move gitlab further down the playlist
-- Have one ExpoProject for all work
+- Example code for the demos we have been working through
+
+Chris
