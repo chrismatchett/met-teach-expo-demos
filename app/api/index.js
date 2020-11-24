@@ -1,3 +1,6 @@
+// We download data in this screen from an API
+// We then loop through the downloaded data
+
 import React, { Component } from 'react';
 import { View, Text, ActivityIndicator, ScrollView } from 'react-native';
 
@@ -11,14 +14,19 @@ export default class Api extends Component {
 
   componentWillMount = async () => {
     try {
+      // fetch the url of api to get data
       const response = await fetch('https://www.anapioficeandfire.com/api/books')
+      // wait for the data to download from the api website
       const books = await response.json()
+      // now the data is downloaded we can stop the loading indicator and carry on
       this.setState({loading: false, books})
     } catch (e) {
+      // we will let the user know there is an error
       this.setState({loading: false, error: true})
     }
   }
 
+  // we can use a function here to loop over our data
   renderBooks = ({name, mediaType, isbn}, i) => {
     return (
       <View key={i + 1} style={{padding: 20}}>
