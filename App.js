@@ -45,25 +45,24 @@ export default class App extends Component {
     }
   };
 
-	render(){
-		if (!this.state.appIsReady) {
+  render(){
+    if (!this.state.appIsReady) {
       return null
     }
 
-  	return (
-	    <NavigationContainer>
-	      <Stack.Navigator>
-	        <Stack.Screen name="Home" component={Home} />
-	        <Stack.Screen name="API" component={API} />
+    return (
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen name="Home" component={Home} />
+          <Stack.Screen name="API" component={API} />
           <Stack.Screen name="Book" component={Book} />
-	      </Stack.Navigator>
-	    </NavigationContainer>
-	  );
-	}
+        </Stack.Navigator>
+      </NavigationContainer>
+    );
+  }
 }
 
-	// Put any code you need to prepare your app in these functions
-	// for splashscreen
-	async function performAPICalls() {}
-	async function downloadAssets() {}
-
+  // Put any code you need to prepare your app in these functions
+  // for splashscreen
+  async function performAPICalls() {}
+  async function downloadAssets() {}

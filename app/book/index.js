@@ -1,8 +1,19 @@
 import React, { Component } from 'react';
 import { View, Button, Text } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default class Book extends Component {
-	
+
+/*
+  storeData = async () => {
+    try {
+       await AsyncStorage.setItem('@storage_Key', value)
+    } catch (e) {
+      console.warn(e);
+    } 
+   }
+*/
+
 	render(){
 
 		const book_name = this.props.route.params.name
