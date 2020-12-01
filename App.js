@@ -8,6 +8,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
 // break your screens out to separate pages for readability
+import Book from './app/book';
 import Home from './app/home';
 import API from './app/api';
 
@@ -54,6 +55,7 @@ export default class App extends Component {
 	      <Stack.Navigator>
 	        <Stack.Screen name="Home" component={Home} />
 	        <Stack.Screen name="API" component={API} />
+          <Stack.Screen name="Book" component={Book} />
 	      </Stack.Navigator>
 	    </NavigationContainer>
 	  );

@@ -2,7 +2,7 @@
 // We then loop through the downloaded data
 
 import React, { Component } from 'react';
-import { View, Text, ActivityIndicator, ScrollView } from 'react-native';
+import { View, Text, ActivityIndicator, ScrollView, Button } from 'react-native';
 
 export default class Api extends Component {
 
@@ -49,6 +49,14 @@ export default class Api extends Component {
           <Text>
             {isbn}
           </Text>
+        </View>
+        <View>
+          <Button
+            // this is how we use react navigation from included pages
+            // we are passing the name, mediaType and isbn of each book to the Book Screen
+            onPress={() => this.props.navigation.navigate("Book", {"name": name, "mediaType": mediaType, "isbn": isbn})}
+            title="Select"
+          />
         </View>
       </View>
     )
