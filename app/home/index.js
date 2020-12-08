@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Button, Text } from 'react-native';
+import { View, SafeAreaView, FlatList, Button, Text } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default class Home extends Component {
@@ -10,6 +10,11 @@ export default class Home extends Component {
   }
 
 	componentDidMount() {
+		// load the data from local storage when the app starts
+		this.getFavourites();
+	}
+
+	componentDidUpdate() {
 		// load the data from local storage when the app starts
 		this.getFavourites();
 	}
@@ -25,19 +30,29 @@ export default class Home extends Component {
 	   }
 	}
 
+	// create a nice display for Flatlist
+  renderItem = ({ item }) => {
+    return(<Text>{item.name}</Text>);
+  };
+
 	render(){
 
 		// get stored_favourites from state
 		const {stored_favourites} = this.state
+		let arrStoredFavourites = JSON.parse(stored_favourites)
 
 		return (
-			<View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-				<Text>{stored_favourites}</Text>
-				<Button
+    <SafeAreaView>
+      <FlatList
+        data={arrStoredFavourites}
+        renderItem={this.renderItem}
+        keyExtractor={item => item.isbn}
+      />
+			<Button
 				// this is how we use react navigation from included pages
 				onPress={() => this.props.navigation.navigate("API")}
 				title="Go to API Screen"
-				/>
-			</View>
+			/>
+    </SafeAreaView>
 		)}
 	}
