@@ -6,6 +6,7 @@ import { View, Text } from 'react-native';
 import * as SplashScreen from 'expo-splash-screen';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 // break your screens out to separate pages for readability
 import Book from './app/book';
@@ -29,6 +30,9 @@ export default class App extends Component {
       console.warn(e);
     }
     this.prepareResources();
+
+    // Use the line below to empty local storage while testing
+    //AsyncStorage.removeItem('@favourite_books');
   }
 
   // method to load resources and make API calls for splashscreen
