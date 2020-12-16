@@ -3,6 +3,7 @@
     "name": "NightClass",
     "slug": "nightclass",
     "version": "1.0.0",
+    "owner": "met-nightclass",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
