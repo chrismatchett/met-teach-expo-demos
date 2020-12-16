@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "NavigationProject",
-    "slug": "NavigationProject",
+    "name": "NightClass",
+    "slug": "nightclass",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -21,6 +21,8 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "description": "NightClass Test Project",
+    "githubUrl": "https://github.com/chrismatchett/expo-demos"
   }
 }
