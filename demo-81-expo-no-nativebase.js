@@ -9,9 +9,9 @@ import { createStackNavigator } from '@react-navigation/stack';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 // break your screens out to separate pages for readability
-import Book from './app-nativebase/book';
-import Home from './app-nativebase/home';
-import API from './app-nativebase/api';
+import Book from './app/book';
+import Home from './app/home';
+import API from './app/api';
 
 // this always needs to be in your App.js file for react navigation
 const Stack = createStackNavigator();
