@@ -65,10 +65,21 @@ export default class Api extends Component {
 
     if (loading) {
       return (
-        <View>
-          <ActivityIndicator animating={true} />
-        </View>
+        <Container>
+          <Content style={{padding: 10}}>
+            <ActivityIndicator size="large" color="#0000ff" />
+          </Content>
+        </Container>
       )
+    } else {
+      return (
+        <Container>
+          <Content style={{padding: 10}}>
+            {books.map(this.renderBooks)}
+          </Content>
+        </Container>
+        )
+      }      
     }
 
     if (error) {
@@ -81,13 +92,6 @@ export default class Api extends Component {
       )
     }
 
-    return (
-      <Container>
-        <Content style={{padding: 10}}>
-          {books.map(this.renderBooks)}
-        </Content>
-      </Container>
-    )
-  }
+
 }
 

@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
-import { View, Button, Text } from 'react-native';
+import { View, Image } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { Container, Header, Body, Content, Button, Card, CardItem, Icon, H3, Text } from 'native-base';
+
+
+import img_book from '../../assets/book.png'; 
 
 export default class Book extends Component {
 
@@ -59,16 +63,33 @@ export default class Book extends Component {
 		const {book_name, book_media, book_isbn} = this.state
 
 		return (
-		<View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-			<Text>{book_name}</Text>
-			<Text>{book_media}</Text>
-			<Text>{book_isbn}</Text>	
-			<Button
-			  // this is how we use react navigation from included pages
-			  onPress={() => this.addBookToFavourites(book_name, book_media, book_isbn)}
-			  title="Add to my favourites"
-			/>
-		</View>
+	      <Card>
+	        <CardItem header>
+	          <H3>
+	            {book_name}
+	          </H3>
+	        </CardItem>
+            <CardItem cardBody>
+              <Image source={img_book} style={{height: 200, width: null, flex: 1}}/>
+            </CardItem>
+	         <CardItem>
+	          <Body>
+	          <Text>
+	            {book_media}, {book_isbn}
+	          </Text>
+	          </Body>
+	          </CardItem>
+	        <CardItem footer>
+	          <Button
+	            // this is how we use react navigation from included pages
+	            // we are passing the name, mediaType and isbn of each book to the Book Screen
+	            onPress={() => this.props.navigation.navigate("Book", {"name": book_name, "mediaType": book_media, "isbn": book_isbn})}
+	            bordered
+	          >
+	            <Text>Add to my favourites</Text>
+	          </Button>
+	        </CardItem>
+	      </Card>
 		)		
 	}
 }
