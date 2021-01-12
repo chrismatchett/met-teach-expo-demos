@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, SafeAreaView, FlatList} from 'react-native';
+import { View, SafeAreaView, FlatList, Alert} from 'react-native';
 import { Container, Header, Body, Content, Button, List, ListItem, H3, Text } from 'native-base';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -33,10 +33,40 @@ export default class Home extends Component {
 	   }
 	}
 
+	removeBook = async(book) => {
+	    try{
+	        let books = await AsyncStorage.getItem('@favourite_books');
+	        let arrBooks = JSON.parse(books)
+	        
+	        //alteredBooks = arrBooks.filter(function(e){
+	        	//return e.name !== book.name
+					//})
+
+	        Alert.alert("Altered", JSON.stringify(arrBooks))
+	        //AsyncStorage.setItem('@favourite_books', JSON.stringify(alteredBooks));
+	        //this.setState({
+	        //   books:alteredBooks
+	        //})
+	    }
+	    catch(error){
+	        Alert.alert("Error", JSON.stringify(error))
+	    }
+	}
+
 	// create a nice display for Flatlist
   renderItem = ({ item }) => {
-    return(<ListItem><Text>{item.name}</Text></ListItem>);
-  };
+    return(
+    	<ListItem>
+    		<Text>{item.name}</Text>
+				<Button
+					// this is how we use react navigation from included pages
+					onPress={() => this.removeBook(item.name)}
+				>
+				<Text>Delete</Text>
+				</Button>
+    	</ListItem>
+    	)
+  }
 
 	render(){
 
@@ -46,15 +76,13 @@ export default class Home extends Component {
 
 		return (
     <Container>
-    	<Content>
+
     		<H3 style={{padding: 20}}>My Favourite GOT Books</H3>
-    		<List>
 		      <FlatList
 		        data={arrStoredFavourites}
 		        renderItem={this.renderItem}
 		        keyExtractor={item => item.isbn}
 		      />
-	      </List>
 				<Button
 					// this is how we use react navigation from included pages
 					onPress={() => this.props.navigation.navigate("API")}
@@ -63,7 +91,7 @@ export default class Home extends Component {
 				>
 				<Text>View all the GOT Books</Text>
 				</Button>
-			</Content>
+
     </Container>
 		)}
 	}
