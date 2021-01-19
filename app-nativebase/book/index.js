@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Image } from 'react-native';
+import { View, Image, Alert } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Container, Header, Body, Content, Button, Card, CardItem, Icon, H3, Text } from 'native-base';
 
@@ -14,13 +14,14 @@ export default class Book extends Component {
 		book_isbn: this.props.route.params.isbn
 	}
 
-	addBookToFavourites(name, mediaType, isbn){
 
-		let data = {"name": name, "mediaType": mediaType, "isbn": isbn}
-		let favourites
 
 		// get the existing favourites from local storage
-		const getFavourites = async () => {
+		storeFavourite = async (name, mediaType, isbn) => {
+
+			let favourites
+			let data = {"name": name, "mediaType": mediaType, "isbn": isbn}
+
 		  try {
 		    const stored_favourites = await AsyncStorage.getItem('@favourite_books')
 
@@ -30,33 +31,23 @@ export default class Book extends Component {
 		    }  else {
 		    	favourites = []
 		    }
+		    
 		    // now the local storage has been retrieved try to add a new item to localstorage
-		    storeFavourites(favourites)
+		    try {
+		  		// add the new favourite to the data from local storage
+		    	favourites.push(data)
+		    	await AsyncStorage.setItem('@favourite_books', JSON.stringify(favourites))
+		    	// return to the home screen
+					this.props.navigation.navigate("Home")
+		  	} catch (e) {
+		    	Alert.alert(JSON.stringify(e))
+		  	}
+
 		  } catch(e) {
-		    console.log(e)
+		    	Alert.alert(JSON.stringify(e))
 		  }
 		}
 
-		const storeFavourites = async (favourites) => {
-		  try {
-		  	// add the new favourite to the data from local storage
-		    favourites.push(data)
-		    await AsyncStorage.setItem('@favourite_books', JSON.stringify(favourites))
-		    // return to the home screen
-				this.props.navigation.navigate("Home")
-		  } catch (e) {
-		    console.log(e)
-		  }
-		}
-
-		// load the function which starts the process of getting favourites from local storage
-		try{
-			getFavourites()
-		} catch(e) {
-			//error
-		}
-		
-	}
 
 	render(){
 
@@ -81,9 +72,7 @@ export default class Book extends Component {
 	          </CardItem>
 	        <CardItem footer>
 	          <Button
-	            // this is how we use react navigation from included pages
-	            // we are passing the name, mediaType and isbn of each book to the Book Screen
-	            onPress={() => this.props.navigation.navigate("Book", {"name": book_name, "mediaType": book_media, "isbn": book_isbn})}
+	            onPress={() => this.storeFavourite(book_name, book_media, book_isbn)}
 	            bordered
 	          >
 	            <Text>Add to my favourites</Text>
