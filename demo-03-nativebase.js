@@ -2,7 +2,7 @@
 // We use Nativebase to style our App
 
 import React from 'react';
-import { AppLoading } from 'expo';
+import AppLoading from 'expo-app-loading';
 import { Container, Header, Content, Body, Left, Right, Text } from 'native-base';
 import { Col, Row, Grid } from 'react-native-easy-grid';
 import * as Font from 'expo-font';
