@@ -9,7 +9,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 // break your screens out to separate pages for readability
-import Home from './app/hn_home';
+import HomeScreen from './app/hn_home';
 
 // this always needs to be in your App.js file for react navigation
 const Stack = createStackNavigator();
@@ -55,7 +55,7 @@ export default class App extends Component {
     return (
       <NavigationContainer>
         <Stack.Navigator>
-          <Stack.Screen name="Home" component={Home} />
+          <Stack.Screen name="HomeScreen" component={HomeScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     );
