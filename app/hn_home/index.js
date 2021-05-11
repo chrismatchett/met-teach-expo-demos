@@ -9,10 +9,13 @@ import { Container, Button, Input, List, ListItem, Left, Right, Icon} from 'nati
 
 const HomeScreen = ({ navigation }) => {
 
+  // set the state of default variables...in this case empty arrays until updated
 	const [ids, setIds] = React.useState([]);
   const [stories, setStories] = React.useState([]);
   const [read, setRead] = React.useState([]);
+  const [dataUpdated, setDataUpdated] = React.useState(false)
 
+  // functions to update the default variables 
 	const getIds = (ids) => {
 		setIds(ids)
 	}
@@ -25,6 +28,7 @@ const HomeScreen = ({ navigation }) => {
     setRead(read)
   }
 
+  // function to get read story ids from memory
   const loadRead = async () => {
     try {
       const value = await AsyncStorage.getItem('@storage_Key')
@@ -42,21 +46,23 @@ const HomeScreen = ({ navigation }) => {
 
   }
 
+  // function to update read variable and store read story ids in local storage
   const storeRead = async (id) => {
     try {
-      read.push(id);
-      const jsonValue = JSON.stringify(read);
+      let arrRead = read;
+      arrRead.push(id);
+      const jsonValue = JSON.stringify(arrRead);
       await AsyncStorage.setItem('@storage_Key', jsonValue);
+      setDataUpdated(true)
     } catch (e) {
       //
     }
-
+    setDataUpdated(false)
   }
-
 
   // fetch an array of ids for the 200 most popular stories on HN
   // loop through the ids of the top 10 stories
-  // fetch each story using the top 10 ids 
+  // fetch each story using the top 10 ids to build a unique url 
 	const getStoriesFromHN = async() =>{
 	  try {
       let arrID = [];
@@ -76,23 +82,22 @@ const HomeScreen = ({ navigation }) => {
       }
 
       getStories(arrStories);
-      //Alert.alert("Stories", JSON.stringify(arrStories))
 
 	  } catch (error) {
 	    //
 	  }
 	}
 
-  //loadRead()
-	getStoriesFromHN()
-  useEffect(() => {
-    loadRead();
-  }, []);
+  useEffect(() =>{
+      getStoriesFromHN()
+       .then(() => loadRead())
+       .catch(e => Alert.alert("Error", e.message))
+  }, [])
 
-  const renderAskHN = ({ item }) => (
+  const renderAskHN = ({item}) => (
     <ListItem button onPress={() => storeRead(item.id)}>
       <Left>
-        <Text>{item.id}</Text>
+        <Text>{item.title}</Text>
       </Left>
       <Right>
       {read.includes(item.id)
@@ -106,10 +111,10 @@ const HomeScreen = ({ navigation }) => {
 
   return (
     <Container>
-    <Text>{read}</Text>
       <List>
         <FlatList
           data={stories}
+          extraData={dataUpdated}
           renderItem={renderAskHN}  // item, index, separator are keywords
           keyExtractor={item => item.id.toString()}
         />

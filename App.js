@@ -12,7 +12,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import HomeScreen from './app/hn_home';
 
 const Stack = createStackNavigator();
-        //<Stack.Screen name="Profile" component={ProfileScreen} />
+//<Stack.Screen name="Profile" component={ProfileScreen} />
 
 const App = () => {
   return (
@@ -21,7 +21,7 @@ const App = () => {
         <Stack.Screen
           name="Home"
           component={HomeScreen}
-          options={{ title: 'Welcome' }}
+          options={{ title: 'Top HN Stories' }}
         />
 
       </Stack.Navigator>
