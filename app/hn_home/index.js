@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import { SafeAreaView, View, FlatList, StyleSheet, Text, StatusBar, Alert } from 'react-native';
+import { SafeAreaView, View, FlatList, StyleSheet, Text, StatusBar, Alert, ActivityIndicator } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -14,6 +14,8 @@ const HomeScreen = ({ navigation }) => {
   const [stories, setStories] = React.useState([]);
   const [read, setRead] = React.useState([]);
   const [dataUpdated, setDataUpdated] = React.useState(false)
+  const [loading, setLoading] = React.useState(true)
+
 
   // functions to update the default variables 
 	const getIds = (ids) => {
@@ -22,10 +24,15 @@ const HomeScreen = ({ navigation }) => {
 
   const getStories = (stories) => {
     setStories(stories)
+    getLoading(false)
   }
 
   const getRead = (read) => {
     setRead(read)
+  }
+
+  const getLoading = (loading) => {
+    setLoading(loading)
   }
 
   // function to get read story ids from memory
@@ -53,7 +60,8 @@ const HomeScreen = ({ navigation }) => {
       arrRead.push(id);
       const jsonValue = JSON.stringify(arrRead);
       await AsyncStorage.setItem('@storage_Key', jsonValue);
-      setDataUpdated(true)
+      setDataUpdated(true);
+      navigation.navigate('Story', {id: id})
     } catch (e) {
       //
     }
@@ -111,14 +119,20 @@ const HomeScreen = ({ navigation }) => {
 
   return (
     <Container>
-      <List>
-        <FlatList
-          data={stories}
-          extraData={dataUpdated}
-          renderItem={renderAskHN}  // item, index, separator are keywords
-          keyExtractor={item => item.id.toString()}
-        />
-      </List>
+      {loading
+        ?  <ActivityIndicator size="large" color="#cccccc" />
+        :  <List>
+              <FlatList
+                data={stories}
+                extraData={dataUpdated}
+                renderItem={renderAskHN}  // item, index, separator are keywords
+                keyExtractor={item => item.id.toString()}
+              />
+            </List>
+      }
+
+     
+
     </Container>
   );
 }
