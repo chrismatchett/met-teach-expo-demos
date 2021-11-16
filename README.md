@@ -2,6 +2,8 @@
 
 Example code for the demos we have been working through.
 
+* [Chris's Bluetooth Repo](https://github.com/chrismatchett/expo-bluetooth)
+
 ## Class of Autumn 2021
 
 * [A3aA3EJLb](https://github.com/A3aA3EJLb)
