@@ -9,7 +9,8 @@ import { createStackNavigator } from '@react-navigation/stack';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 // break your screens out to separate pages for readability
-import HomeScreen from './app/iot_home';
+import HomeScreen from './app/hn_home';
+import StoryScreen from './app/hn_story';
 
 const Stack = createStackNavigator();
 
@@ -21,8 +22,14 @@ const App = () => {
         <Stack.Screen
           name="Home"
           component={HomeScreen}
-          options={{ title: 'Home' }}
+          options={{ title: 'Top 10 HN Stories' }}
         />
+        <Stack.Screen
+          name="Story"
+          component={StoryScreen}
+          options={{ title: 'Story' }}
+        />
+
       </Stack.Navigator>
     </NavigationContainer>
   );
