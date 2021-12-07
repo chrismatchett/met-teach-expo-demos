@@ -13,20 +13,21 @@ import {
   NativeBaseProvider,
 } from "native-base"
 
-  const turnOn = () => {
-      Alert.alert("Test", "Turn On");
-    ;
-  };
+const turnOn = () => {
+  Alert.alert("Turn On", "On");
+};
 
+const turnOff = () => {
+  Alert.alert("Turn Off", "Off");
+};
 
 const HomeScreen = ({ route, navigation }) => {
-
   return (
     <View>
     <Button onPress={turnOn}>
       <Text>Turn On</Text>
     </Button>
-    <Button>
+    <Button onPress={turnOff}>
       <Text>Turn Off</Text>
     </Button>
     </View>
