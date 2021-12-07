@@ -1,4 +1,4 @@
-import React, {useEffect} from "react"
+import React from "react"
 import {Alert} from "react-native"
 import {
   View,
@@ -12,10 +12,6 @@ import {
   Center,
   NativeBaseProvider,
 } from "native-base"
-
-const turnOff = () => {
-  Alert.alert("Turn Off", "Off");
-};
 
 const HomeScreen = ({ route, navigation }) => {
   const [data, setData] = React.useState(null); 
@@ -43,9 +39,11 @@ const HomeScreen = ({ route, navigation }) => {
       .then(result => setData(result))
       .catch(error =>  console.log('error', error));
   };
-  
 
-
+  const turnOff = () => {
+    Alert.alert("Turn Off", "Off");
+  };
+    
   return (
     <View>
       <Button onPress={turnOn}>
