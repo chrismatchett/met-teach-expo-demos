@@ -21,7 +21,7 @@
 					},
 					{
 						"key": "Authorization",
-						"value": "SharedAccessSignature sr=met-events.servicebus.windows.net&sig=Yuso42BOpx8hTF8iA9doxSwmc6wppl%2FivOTqdcqnaLk%3D&se=1638980611&skn=send",
+						"value": "SharedAccessSignature sr=t&sig=&se=&skn=send",
 						"type": "text"
 					},
 					{
