@@ -10,6 +10,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 // break your screens out to separate pages for readability
 import HomeScreen from './app/iot_home';
+import BridgeScreen from './app/iot_bridge';
 
 const Stack = createStackNavigator();
 
@@ -22,6 +23,11 @@ const App = () => {
           name="Home"
           component={HomeScreen}
           options={{ title: 'Home' }}
+        />
+        <Stack.Screen
+          name="Bridge"
+          component={BridgeScreen}
+          options={{ title: 'Bridge' }}
         />
       </Stack.Navigator>
     </NavigationContainer>
