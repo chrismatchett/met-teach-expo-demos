@@ -19,7 +19,7 @@ const HomeScreen = ({ route, navigation }) => {
   const turnOn = () => {
 
     let myHeaders = new Headers();
-    myHeaders.append("Authorization", "SharedAccessSignature sr=met-events.servicebus.windows.net&sig=Yuso42BOpx8hTF8iA9doxSwmc6wppl%2FivOTqdcqnaLk%3D&se=1638980611&skn=send");
+    myHeaders.append("Authorization", "SharedAccessSignature sr=&sig=skn=send");
     myHeaders.append("Content-Type", "application/atom+xml;type=entry;charset=utf-8");
     myHeaders.append("Host", "met-events.servicebus.windows.net");
     
