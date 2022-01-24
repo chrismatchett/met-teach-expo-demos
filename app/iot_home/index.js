@@ -1,5 +1,5 @@
 import React from "react"
-import {Alert} from "react-native"
+import {Alert, FlatList} from "react-native"
 import {
   View,
   VStack,
@@ -10,13 +10,15 @@ import {
   Box,
   Text,
   Center,
-  NativeBaseProvider,
+  NativeBaseProvider
 } from "native-base"
 
 import { Client, Message } from 'react-native-paho-mqtt';
 
 const HomeScreen = ({ route, navigation }) => {
-const [data, setData] = React.useState(null); 
+const [data, setData] = React.useState("on"); 
+const [devices, setDevices] = React.useState([])
+
 //Set up an in-memory alternative to global localStorage
 const myStorage = {
   setItem: (key, item) => {
@@ -38,7 +40,11 @@ client.on('connectionLost', (responseObject) => {
   }
 });
 client.on('messageReceived', (message) => {
-  console.log(message.payloadString);
+  let jsonDevices = JSON.parse(message.payloadString);
+  //setDevices(jsonDevices.filter(device => device.definition != null)); 
+
+  //console.log(message.payloadString.JSON);
+  //console.log(result.length)
 });
 
 // connect the client
@@ -51,9 +57,10 @@ client.connect()
 
   })
   .then(() => {
-    const message = new Message("on");
+    const message = new Message(data);
     message.destinationName = 'zigbee2mqtt/0x001788010b2efdb0/set';
     client.send(message);
+    //console.log(message)
   })
   .catch((responseObject) => {
     console.log(responseObject)
@@ -63,15 +70,17 @@ client.connect()
   })
 ;
 
-
+function toggleLight(){
+  setData("on")
+}
 
 
   return (
     <View>
-      <Button>
+      <Button onPress={() => { setData("on")}}>
         <Text>Turn On</Text>
       </Button>
-      <Button>
+      <Button onPress={() => { setData("off")}}>
         <Text>Turn Off</Text>
       </Button>
       <Text>{data}</Text>
