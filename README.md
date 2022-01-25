@@ -1,4 +1,4 @@
-# Night Class Demos
+# Belfast Met - Night Class Demos
 
 Example code for the demos we have been working through.
 
@@ -19,4 +19,3 @@ Example code for the demos we have been working through.
 * The importance of keeping expo-cli up to date.
 * The importance of reading the docs.
 * Understanding the limitations of web testing.
-* Can we test bluetooth in the Expo App?
