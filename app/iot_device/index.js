@@ -22,8 +22,8 @@ const DeviceScreen = ({ route, navigation }) => {
   const [exposes, setExposes] = useState([]);
   const {bridge, device} = route.params;
  
-  let bridge_ws = 'ws://192.168.28.152:9001/';
-  //const bridge_ws = 'ws://' + bridge + '/';
+  //let bridge_ws = 'ws://192.168.0.221:9001/';
+  const bridge_ws = 'ws://' + bridge + '/';
 
   //When the Screen loads make an array of the device's features e.g. on/off/toggle
   useEffect(() => {

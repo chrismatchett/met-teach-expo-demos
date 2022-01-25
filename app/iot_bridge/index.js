@@ -25,9 +25,9 @@ const BridgeScreen = ({route, navigation}) => {
   const {bridge} = route.params;
 
   //The URI is specified to make testing easier
-  let bridge_ws = 'ws://192.168.28.152:9001/';
+  //let bridge_ws = 'ws://192.168.0.221:9001/';
   //Use this URI when testing is over 
-  //const bridge_ws = 'ws://' + bridge + '/';
+  const bridge_ws = 'ws://' + bridge + '/';
   
   //Set up an in-memory alternative to global localStorage
   const myStorage = {
