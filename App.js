@@ -13,6 +13,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 //Screens are places in separate files for readability
 import HomeScreen from './app/iot_home';
 import BridgeScreen from './app/iot_bridge';
+import DeviceScreen from './app/iot_device';
 
 const Stack = createStackNavigator();
 
@@ -30,6 +31,11 @@ const App = () => {
           name="Bridge"
           component={BridgeScreen}
           options={{ title: 'Bridge' }}
+        />
+        <Stack.Screen
+          name="Device"
+          component={DeviceScreen}
+          options={{ title: 'Device' }}
         />
       </Stack.Navigator>
     </NavigationContainer>

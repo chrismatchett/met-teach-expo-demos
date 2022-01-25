@@ -7,9 +7,9 @@
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
-      "image": "./assets/hn10.png",
+      "image": "./assets/demos.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ff6600"
+      "backgroundColor": "navy"
     },
     "updates": {
       "fallbackToCacheTimeout": 0

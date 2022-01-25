@@ -7,7 +7,6 @@
 import React, {useEffect, useState} from "react"
 import {
   Container,
-  H1,
   Text,
   Item,
   Input,
@@ -19,7 +18,7 @@ const HomeScreen = ({route, navigation}) => {
   const [text, setText] = useState(""); 
 
   return(
-    <Container style={{ flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: 'blue' }}>
+    <Container style={{ flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: 'navy' }}>
       <Item regular>
         <Input 
         placeholder='192.168.28.152:9001' 
