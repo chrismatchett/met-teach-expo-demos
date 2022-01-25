@@ -1,5 +1,10 @@
-import React from "react"
-//import {Alert} from "react-native"
+/*
+  --This App connects to Iot Devices using Zigbee2MQTT as a Bridge--
+  The code below collects the URI of the Bridge.
+  The user experience could be improved by storing the URI in local storage.
+*/
+
+import React, {useEffect, useState} from "react"
 import {
   Container,
   H1,
@@ -9,9 +14,9 @@ import {
   Button
 } from "native-base"
 
-const HomeScreen = ({ route, navigation }) => {
+const HomeScreen = ({route, navigation}) => {
 
-  const [text, setText] = React.useState(""); 
+  const [text, setText] = useState(""); 
 
   return(
     <Container style={{ flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: 'blue' }}>
@@ -24,7 +29,7 @@ const HomeScreen = ({ route, navigation }) => {
         />
       </Item> 
       <Button onPress={() => navigation.navigate('Bridge', {bridge: text})} light>
-        <Text>Hub IP Address</Text>
+        <Text>Bridge IP Address</Text>
       </Button>
     </Container>
   )
